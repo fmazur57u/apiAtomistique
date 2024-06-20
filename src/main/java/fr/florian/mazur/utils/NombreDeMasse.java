@@ -179,7 +179,55 @@ public enum NombreDeMasse {
 	 
 	 Fr(Arrays.asList(221, 223)),
 	 
+	 Ra(Arrays.asList(222, 223, 224, 225, 226, 228)),
 	 
+	 Ac(Arrays.asList(225, 227, 228)),
+	 
+	 Th(Arrays.asList(227, 228, 229, 230, 231, 232, 234)),
+	 
+	 Pa(Arrays.asList(231, 233, 234)),
+	 
+	 U(Arrays.asList(227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240)),
+	 
+	 Np(Arrays.asList(236, 237, 239)),
+	 
+	 Pu(Arrays.asList(239, 240, 242, 244)),
+	 
+	 Am(Arrays.asList(241, 243)),
+	 
+	 Cm(Arrays.asList(243, 245, 246)),
+	 
+	 Bk(Arrays.asList(245, 247)),
+	 
+	 Cf(Arrays.asList(246, 249, 250)),
+	 
+	 Es(Arrays.asList(253, 254)),
+	 
+	 Fm(Arrays.asList(253, 255)),
+	 
+	 Md(Arrays.asList(255, 256)),
+	 
+	 No(Arrays.asList(255)),
+	 
+	 Lw(Arrays.asList(257)),
+	 
+	 Unq(Arrays.asList(253, 255, 257, 258, 259, 260, 261)),
+	 
+	 Unp(Arrays.asList(262)),
+	 
+	 Unh(Arrays.asList(263)),
+	 
+	 Uns(Arrays.asList(261)),
+	 
+	 Uno(Arrays.asList(264)),
+	 
+	 Une(Arrays.asList(266)),
+	 
+	 Uun(Arrays.asList(269)),
+	 
+	 Uuu(Arrays.asList(272)),
+	 
+	 Uub(Arrays.asList(277))
 	 ;
 
 	 private final List<Integer> a;

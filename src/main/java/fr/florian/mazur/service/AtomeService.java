@@ -4,5 +4,5 @@ import fr.florian.mazur.dto.AtomeDto;
 
 public interface AtomeService {
 
-	public AtomeDto obtenirInfosBasiqueAtomeEtIons(String symbole, int a, int charge);
+	public AtomeDto obtenirInfosBasiqueAtomeEtIons(String symbole, int a);
 }

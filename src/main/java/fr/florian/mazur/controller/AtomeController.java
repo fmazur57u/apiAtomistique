@@ -22,9 +22,9 @@ public class AtomeController {
 
 
 
-	@GetMapping(value="/basic_info/{symbole}/{a}/{charge}", produces="application/json")
-	public ResponseEntity<AtomeDto> getBasicInfos(@PathVariable String symbole, @PathVariable int a, @PathVariable int charge) {
-		AtomeDto atomeDto = atomeService.obtenirInfosBasiqueAtomeEtIons(symbole, a, charge);
+	@GetMapping(value="/basic_info/{symbole}/{a}", produces="application/json")
+	public ResponseEntity<AtomeDto> getBasicInfos(@PathVariable String symbole, @PathVariable int a) {
+		AtomeDto atomeDto = atomeService.obtenirInfosBasiqueAtomeEtIons(symbole, a);
 		return new ResponseEntity<AtomeDto>(atomeDto, HttpStatus.OK);	
 	}
 	

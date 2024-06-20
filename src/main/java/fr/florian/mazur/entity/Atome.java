@@ -22,41 +22,80 @@ public class Atome {
 	@Column(name = "symbole")
 	private String symbole;
 	
+	@Column(name ="etat_oxydation")
+	private String degresOxydation;
+	
+	
+	
 	public Atome() {
 		
 	}
 
-	public Atome(int z) {
-		super();
-		this.z = z;
-	}
 
-	public Atome(int z, String symbole) {
+
+	public Atome(int z, String symbole, String degresOxydation) {
 		this.z = z;
 		this.symbole = symbole;
+		this.degresOxydation = degresOxydation;
 	}
 
-	public String getSymbole() {
-		return symbole;
+
+
+	public int getAtomeId() {
+		return atomeId;
 	}
 
-	public void setSymbole(String symbole) {
-		this.symbole = symbole;
+
+
+	public void setAtomeId(int atomeId) {
+		this.atomeId = atomeId;
 	}
+
+
 
 	public int getZ() {
 		return z;
 	}
-	
+
+
 
 	public void setZ(int z) {
 		this.z = z;
 	}
 
-	@Override
-	public String toString() {
-		return "Atome [atomeId=" + atomeId + ", z=" + z + ", symbole=" + symbole + "]";
+
+
+	public String getSymbole() {
+		return symbole;
 	}
 
+
+
+	public void setSymbole(String symbole) {
+		this.symbole = symbole;
+	}
+
+
+
+	public String getDegresOxydation() {
+		return degresOxydation;
+	}
+
+
+
+	public void setDegresOxydation(String degresOxydation) {
+		this.degresOxydation = degresOxydation;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Atome [atomeId=" + atomeId + ", z=" + z + ", symbole=" + symbole + ", degresOxydation="
+				+ degresOxydation + "]";
+	}
+
+	
+	
 	
 }
