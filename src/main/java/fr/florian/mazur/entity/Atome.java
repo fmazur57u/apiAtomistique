@@ -39,6 +39,13 @@ public class Atome {
 		this.degresOxydation = degresOxydation;
 	}
 
+	
+
+	public Atome(int z, String symbole) {
+		this.z = z;
+		this.symbole = symbole;
+	}
+
 
 
 	public int getAtomeId() {

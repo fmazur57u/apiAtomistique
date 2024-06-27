@@ -3,4 +3,7 @@ C:\Users\Florian\Documents\workspace-spring-tool-suite-4-4.19.1.RELEASE\apiAtomi
 C:\Users\Florian\Documents\workspace-spring-tool-suite-4-4.19.1.RELEASE\apiAtomistique\src\main\java\fr\florian\mazur\repository\AtomeRepository.java
 C:\Users\Florian\Documents\workspace-spring-tool-suite-4-4.19.1.RELEASE\apiAtomistique\src\main\java\fr\florian\mazur\ApiAtomistiqueApplication.java
 C:\Users\Florian\Documents\workspace-spring-tool-suite-4-4.19.1.RELEASE\apiAtomistique\src\main\java\fr\florian\mazur\entity\Atome.java
+C:\Users\Florian\Documents\workspace-spring-tool-suite-4-4.19.1.RELEASE\apiAtomistique\src\main\java\fr\florian\mazur\utils\EnumClassificationPeriodique.java
+C:\Users\Florian\Documents\workspace-spring-tool-suite-4-4.19.1.RELEASE\apiAtomistique\src\main\java\fr\florian\mazur\controller\AtomeController.java
+C:\Users\Florian\Documents\workspace-spring-tool-suite-4-4.19.1.RELEASE\apiAtomistique\src\main\java\fr\florian\mazur\utils\ApiAtomistiqueException.java
 C:\Users\Florian\Documents\workspace-spring-tool-suite-4-4.19.1.RELEASE\apiAtomistique\src\main\java\fr\florian\mazur\service\AtomeServiceImpl.java

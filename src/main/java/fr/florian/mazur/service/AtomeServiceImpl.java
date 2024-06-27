@@ -1,14 +1,14 @@
 package fr.florian.mazur.service;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.google.common.base.CharMatcher;
 
 import fr.florian.mazur.dto.AtomeDto;
+import fr.florian.mazur.dto.IsotopeDto;
 import fr.florian.mazur.entity.Atome;
 import fr.florian.mazur.repository.AtomeRepository;
 import fr.florian.mazur.utils.ApiAtomistiqueException;
@@ -39,16 +39,14 @@ public class AtomeServiceImpl implements AtomeService {
 			throw new ApiAtomistiqueException(e.getMessage());
 		} catch (IllegalArgumentException  e ) {
 			throw new IllegalArgumentException("Le symbole que vous avez rentrer ne correspond à aucun atome.");
-		}
-		  catch (RuntimeException e) {
-			throw new RuntimeException("Impossible d'accéder à la table Atome");
+		} catch (DataAccessException e) {
+			throw new DataAccessException("Impossible d'accéder à la table Atome") {};
 		}
 
 		int protons = atome.getZ();
 		int neutrons = a - atome.getZ();
 		int electrons = atome.getZ()-charge;
-		AtomeDto atomeDto = new AtomeDto(protons, neutrons, electrons);
-		return atomeDto; 
+		return new AtomeDto(protons, neutrons, electrons); 
 	}
 	
 	private void verifySymboleAndA(String symboleRequest, int a) throws ApiAtomistiqueException {
@@ -81,5 +79,33 @@ public class AtomeServiceImpl implements AtomeService {
 			charge = 0;
 		}
 		return charge;
+	}
+
+	private void verifyZAndSymbole(Atome atome, int a) throws ApiAtomistiqueException {
+		if (atome == null) {
+			throw new ApiAtomistiqueException("Le numéros atomique Z entrer ne correspond à aucun atome de la classification périodique des éléments.");
+		} else {
+			if(EnumClassificationPeriodique.valueOf(atome.getSymbole()).getValeur().stream().noneMatch(numA -> numA == a)) {
+				throw new ApiAtomistiqueException("Le nombre de masse A sélectionnée ne correspond à aucun Isotopes de l'atome récupérer de la base de donnée Atome.");
+			}
+		}
+	}
+
+	@Override
+	public IsotopeDto obtenirInfosBasiqueIsotopes(int z, int a) throws ApiAtomistiqueException {
+		Atome atome;
+		try {
+			atome = atomeRepository.findByZ(z);
+			verifyZAndSymbole(atome, a);			
+		} catch (ApiAtomistiqueException  e ) {
+			throw new ApiAtomistiqueException(e.getMessage());
+		} catch (DataAccessException e) {
+			throw new DataAccessException("Impossible d'accéder à la table Atome") {};
+		}
+		String symbole = atome.getSymbole();
+		int protons = atome.getZ();
+		int neutrons = a - atome.getZ();
+		int electrons = atome.getZ();
+		return new IsotopeDto("X est un isotope de " + symbole + ".", "X possède " + neutrons + " neutrons par atome.", "X possède " + electrons + " électrons par atome.", "X possède " + protons + " protons par atome.");
 	}
 }

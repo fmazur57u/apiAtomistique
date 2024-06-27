@@ -1,7 +1,5 @@
 fr\florian\mazur\dto\AtomeDto.class
-fr\florian\mazur\service\AtomeService.class
-fr\florian\mazur\dto\AtomeDto$AtomeDtoBuilder.class
-fr\florian\mazur\repository\AtomeRepository.class
 fr\florian\mazur\ApiAtomistiqueApplication.class
+fr\florian\mazur\service\AtomeService.class
+fr\florian\mazur\repository\AtomeRepository.class
 fr\florian\mazur\entity\Atome.class
-fr\florian\mazur\entity\Atome$AtomeBuilder.class

@@ -7,4 +7,6 @@ import fr.florian.mazur.entity.Atome;
 public interface AtomeRepository extends JpaRepository<Atome, Integer> {
 
 	public Atome findBySymbole(String symbole);
+	
+	public Atome findByZ(int z);
 }
