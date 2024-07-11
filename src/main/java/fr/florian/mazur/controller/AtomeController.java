@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.florian.mazur.dto.AtomeDto;
 import fr.florian.mazur.dto.IsotopeDto;
+import fr.florian.mazur.dto.MasseAtomiqueDto;
 import fr.florian.mazur.service.AtomeService;
 import fr.florian.mazur.utils.ApiAtomistiqueException;
 
@@ -36,4 +37,9 @@ public class AtomeController {
 		return new ResponseEntity<>(isotopeDto, HttpStatus.OK);	
 	}
 	
+	@GetMapping(value="/masse_atomique/{symbole}", produces="application/json")
+	public ResponseEntity<MasseAtomiqueDto> getBasicInfos(@PathVariable String symbole) throws ApiAtomistiqueException {
+		MasseAtomiqueDto masseAtomiqueDto = atomeService.obtenirMasseAtomique(symbole);
+		return new ResponseEntity<>(masseAtomiqueDto, HttpStatus.OK);	
+	}
 }

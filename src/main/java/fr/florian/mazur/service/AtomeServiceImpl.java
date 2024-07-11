@@ -9,6 +9,7 @@ import com.google.common.base.CharMatcher;
 
 import fr.florian.mazur.dto.AtomeDto;
 import fr.florian.mazur.dto.IsotopeDto;
+import fr.florian.mazur.dto.MasseAtomiqueDto;
 import fr.florian.mazur.entity.Atome;
 import fr.florian.mazur.repository.AtomeRepository;
 import fr.florian.mazur.utils.ApiAtomistiqueException;
@@ -81,7 +82,7 @@ public class AtomeServiceImpl implements AtomeService {
 		return charge;
 	}
 
-	private void verifyZAndSymbole(Atome atome, int a) throws ApiAtomistiqueException {
+	private void verifyZSymboleAndA(Atome atome, int a) throws ApiAtomistiqueException {
 		if (atome == null) {
 			throw new ApiAtomistiqueException("Le numéros atomique Z entrer ne correspond à aucun atome de la classification périodique des éléments.");
 		} else {
@@ -96,7 +97,7 @@ public class AtomeServiceImpl implements AtomeService {
 		Atome atome;
 		try {
 			atome = atomeRepository.findByZ(z);
-			verifyZAndSymbole(atome, a);			
+			verifyZSymboleAndA(atome, a);			
 		} catch (ApiAtomistiqueException  e ) {
 			throw new ApiAtomistiqueException(e.getMessage());
 		} catch (DataAccessException e) {
@@ -107,6 +108,21 @@ public class AtomeServiceImpl implements AtomeService {
 		int neutrons = a - atome.getZ();
 		int electrons = atome.getZ();
 		return new IsotopeDto("X est un isotope de " + symbole + ".", "X possède " + neutrons + " neutrons par atome.", "X possède " + electrons + " électrons par atome.", "X possède " + protons + " protons par atome.");
+	}
+
+
+	@Override
+	public MasseAtomiqueDto obtenirMasseAtomique(String symbole) {
+		Atome atome;
+		try {
+			EnumClassificationPeriodique.valueOf(symbole);
+			atome = atomeRepository.findBySymbole(symbole);
+		} catch (IllegalArgumentException  e) {
+			throw new IllegalArgumentException("Le symbole que vous avez rentrer ne correspond à aucun atome.");
+		} catch (DataAccessException e) {
+			throw new DataAccessException("Impossible d'accéder à la table Atome") {};
+		}
+		return new MasseAtomiqueDto(atome.getMasseAtomique());
 	}
 	
 	

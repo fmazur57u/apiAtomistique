@@ -6,8 +6,6 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
-import java.util.ArrayList;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +14,7 @@ import org.springframework.dao.DataAccessException;
 
 import fr.florian.mazur.dto.AtomeDto;
 import fr.florian.mazur.dto.IsotopeDto;
+import fr.florian.mazur.dto.MasseAtomiqueDto;
 import fr.florian.mazur.entity.Atome;
 import fr.florian.mazur.repository.AtomeRepository;
 import fr.florian.mazur.utils.ApiAtomistiqueException;
@@ -165,5 +164,34 @@ class AtomeServiceTest {
 		assertEquals(isotopeDto.toString(), atomeService.obtenirInfosBasiqueIsotopes(z, a).toString());
 	}
 	
+	@Test
+	void testObtenirMasseAtomiqueExceptionSymbole() throws ApiAtomistiqueException {
+		String symbole = "toto";
+		IllegalArgumentException apiAtomistiqueException = assertThrows(IllegalArgumentException.class, () -> {
+			atomeService.obtenirMasseAtomique(symbole);
+		});
+		String message = "Le symbole que vous avez rentrer ne correspond à aucun atome.";
+		assertEquals(message, apiAtomistiqueException.getMessage());
+	}
 	
+	@Test
+	void testObtenirMasseAtomiqueException() throws ApiAtomistiqueException {
+		String symbole = "H";
+		when(atomeRepository.findBySymbole(anyString())).thenThrow(new DataAccessException("..."){ });		
+		DataAccessException apiAtomistiqueException = assertThrows(DataAccessException.class, () -> {
+			atomeService.obtenirMasseAtomique(symbole);
+		});
+		String message = "Impossible d'accéder à la table Atome";
+		assertEquals(message, apiAtomistiqueException.getMessage());
+	}
+	
+	@Test
+	void testObtenirMasseAtomique() throws ApiAtomistiqueException {
+		String symbole = "H";
+		Atome atome = new Atome();
+		atome.setMasseAtomique("1.00794");
+		when(atomeRepository.findBySymbole(anyString())).thenReturn(atome);
+		MasseAtomiqueDto masseAtomiqueDto = new MasseAtomiqueDto(atome.getMasseAtomique());
+		assertEquals(masseAtomiqueDto.toString(), atomeService.obtenirMasseAtomique(symbole).toString());
+	}
 }

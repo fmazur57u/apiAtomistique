@@ -20,15 +20,27 @@ public class Molecule {
 	private String formuleBrute;
 	
 	@Column(name = "MASSE_MOLAIRE")
-	private double masseMolaire;
+	private Double masseMolaire;
+	
+	@Column(name = "MOMENT_DIPOLAIRE")
+	private Double momentDipolaire;
 	
 	public Molecule() {
 
 	}
 
-	public Molecule(String formuleBrute, double masseMolaire) {
+	public Molecule(String formuleBrute, Double masseMolaire, Double momentDipolaire) {
 		this.formuleBrute = formuleBrute;
 		this.masseMolaire = masseMolaire;
+		this.momentDipolaire = momentDipolaire;
+	}
+
+	public Double getMomentDipolaire() {
+		return momentDipolaire;
+	}
+
+	public void setMomentDipolaire(Double momentDipolaire) {
+		this.momentDipolaire = momentDipolaire;
 	}
 
 	public int getIdMolecule() {
@@ -47,19 +59,18 @@ public class Molecule {
 		this.formuleBrute = formuleBrute;
 	}
 
-	public double getMasseMolaire() {
+	public Double getMasseMolaire() {
 		return masseMolaire;
 	}
 
-	public void setMasseMolaire(double masseMolaire) {
+	public void setMasseMolaire(Double masseMolaire) {
 		this.masseMolaire = masseMolaire;
 	}
 
 	@Override
 	public String toString() {
-		return "Molecules [idMolecule=" + idMolecule + ", formuleBrute=" + formuleBrute + ", masseMolaire="
-				+ masseMolaire + "]";
+		return "Molecule [idMolecule=" + idMolecule + ", formuleBrute=" + formuleBrute + ", masseMolaire="
+				+ masseMolaire + ", momentDipolaire=" + momentDipolaire + "]";
 	}
-	
 	
 }
